@@ -1,0 +1,42 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100vh;
+}
+
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid #eee;
+}
+.Header .cell {
+  padding: 1rem 4rem;
+  align-items: center;
+  /*justify-content: center;*/
+  background: #fafafa;
+  border-right: 1px solid #eee;
+}
+.Header .cell:last-child {
+  border-right: none;
+}
+
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.Content .row {
+  padding: 4rem 1rem;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.Content .row:last-child {
+  border-bottom: none;
+}

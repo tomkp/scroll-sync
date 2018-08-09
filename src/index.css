@@ -1,0 +1,18 @@
+@import "./../node_modules/normalize.css/normalize.css";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body, html, #root {
+  font-family: "Proxima Nova", "Proxima", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px;
+
+  font-weight: 200;
+  line-height: 1.5;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
