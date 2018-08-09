@@ -107,11 +107,17 @@ class App extends Component {
 
         return (
             <div className="App">
+
+                <div className="Content" ref={this.contentRefCallback}>
+                    {contents}
+                </div>
+
                 <div className="Header" onScroll={this.onHeaderScroll} ref={this.headerRefCallback}>
                     {headers}
                 </div>
-                <div className="Content" ref={this.contentRefCallback}>
-                    {contents}
+
+                <div className="Title">
+                    scroll-sync
                 </div>
             </div>
         );
