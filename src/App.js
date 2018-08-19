@@ -9,7 +9,7 @@ class App extends Component {
         this.onContentScroll = this.onContentScroll.bind(this);
 
         this.count = 500;
-        this.resetTimeoutMs = 100;
+        this.resetTimeoutMs = 50;
 
         this.headerRefs = [];
         this.contentRefs = [];
@@ -37,6 +37,8 @@ class App extends Component {
                 return acc;
             }, 0);
 
+            //console.log(`centered`, centered);
+
             const ref = this.contentRefs[centered].current;
             ref.scrollIntoView({behavior: 'smooth'});
             clearTimeout(this.timeoutId);
@@ -62,9 +64,22 @@ class App extends Component {
                 return acc;
             }, -1);
 
+            //console.log(`centered`, centered);
+
             if (centered !== -1) {
+
+                this.headerRefs.map(_ => {
+                    _.current.style.background = 'transparent';
+                    _.current.style.borderBottomColor = 'transparent';
+                });
+
                 const ref = this.headerRefs[centered].current;
+
+                ref.style.background = '#000';
+                ref.style.borderBottomColor = '#f00';
+
                 ref.scrollIntoView({behavior: 'instant'});
+
                 clearTimeout(this.timeoutId);
 
                 this.timeoutId = setTimeout(() => {
@@ -108,17 +123,19 @@ class App extends Component {
         return (
             <div className="App">
 
-                <div className="Content" ref={this.contentRefCallback}>
-                    {contents}
-                </div>
-
-                <div className="Header" onScroll={this.onHeaderScroll} ref={this.headerRefCallback}>
+                <div className="Header" ref={this.headerRefCallback}>
                     {headers}
                 </div>
 
-                <div className="Title">
-                    scroll-sync
+                <div className="Content" onScroll={this.onContentScroll} ref={this.contentRefCallback}>
+                    {contents}
                 </div>
+
+
+
+                {/*<div className="Title">
+                    scroll-sync
+                </div>*/}
             </div>
         );
     }

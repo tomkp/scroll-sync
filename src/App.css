@@ -18,17 +18,21 @@
   flex-direction: row;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  border-bottom: 1px solid #eee;
+  /*border-bottom: 1px solid #eee;*/
+  background: var(--navy);
+
 }
 .Header .cell {
   cursor: pointer;
-  font-size: 32px;
-  font-weight: 400;
-  padding: 4rem 4rem;
+  /*font-size: 32px;*/
+  /*font-weight: 400;*/
+  /*padding: 4rem 4rem;*/
+  padding: .5rem 1rem;
   align-items: center;
   /*justify-content: center;*/
-  background: #fafafa;
-  border-right: 1px solid #eee;
+  color: #FFFFFF;
+  /*border-right: 1px solid #eee;*/
+  border-bottom: 4px solid transparent;
 }
 .Header .cell:last-child {
   border-right: none;
@@ -44,6 +48,7 @@
 }
 .Content .row {
   padding: 4rem 1rem;
+  font-weight: 400;
   align-items: center;
   border-bottom: 1px solid #eee;
 }
