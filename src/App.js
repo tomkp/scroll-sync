@@ -1,12 +1,18 @@
 import React, { Component, createRef } from 'react';
 import './App.css';
 
+import debug from 'debug';
+
+const log = debug('tomkp.ScrollSync');
+
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.onHeaderScroll = this.onHeaderScroll.bind(this);
         this.onContentScroll = this.onContentScroll.bind(this);
+
+        this.onHeaderClick = this.onHeaderClick.bind(this);
 
         this.count = 500;
         this.resetTimeoutMs = 50;
@@ -23,7 +29,7 @@ class App extends Component {
 
         if (!this.isContentScrolling) {
 
-            console.log(`onHeaderScroll`);
+            log(`onHeaderScroll`);
 
             this.isHeaderScrolling = true;
             e.persist();
@@ -37,21 +43,15 @@ class App extends Component {
                 return acc;
             }, 0);
 
-            //console.log(`centered`, centered);
-
-            const ref = this.contentRefs[centered].current;
-            ref.scrollIntoView({behavior: 'smooth'});
-            clearTimeout(this.timeoutId);
-
-            this.timeoutId = setTimeout(() => {
-                this.isHeaderScrolling = false;
-            }, this.resetTimeoutMs);
+            this.scrollContentToIndex(centered);
         }
     }
 
     onContentScroll(e) {
 
         if (!this.isHeaderScrolling) {
+
+            log(`onContentScroll`);
 
             this.isContentScrolling = true;
             e.persist();
@@ -64,7 +64,7 @@ class App extends Component {
                 return acc;
             }, -1);
 
-            //console.log(`centered`, centered);
+            log(`centered`, centered);
 
             if (centered !== -1) {
 
@@ -87,6 +87,24 @@ class App extends Component {
                 }, this.resetTimeoutMs);
             }
         }
+    }
+
+    onHeaderClick(key, headerRef) {
+        log('onHeaderClick', key, headerRef);
+        this.scrollContentToIndex(key);
+    }
+
+
+    scrollContentToIndex(key) {
+        log(`scrollContentToIndex`, key);
+
+        const ref = this.contentRefs[key].current;
+        ref.scrollIntoView({behavior: 'smooth'});
+        clearTimeout(this.timeoutId);
+
+        this.timeoutId = setTimeout(() => {
+            this.isHeaderScrolling = false;
+        }, this.resetTimeoutMs);
     }
 
 
@@ -113,7 +131,7 @@ class App extends Component {
         for (let i = 0; i < this.count; i++) {
             const headerRef = createRef();
             this.headerRefs.push(headerRef);
-            headers.push(<div className="cell" key={i} ref={headerRef}>{i}</div>);
+            headers.push(<div className="cell" key={i} ref={headerRef} onClick={() => this.onHeaderClick(i, headerRef)} >{i}</div>);
 
             const contentRef = createRef();
             this.contentRefs.push(contentRef);
@@ -130,12 +148,6 @@ class App extends Component {
                 <div className="Content" onScroll={this.onContentScroll} ref={this.contentRefCallback}>
                     {contents}
                 </div>
-
-
-
-                {/*<div className="Title">
-                    scroll-sync
-                </div>*/}
             </div>
         );
     }
