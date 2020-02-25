@@ -3,7 +3,8 @@ import './App.css';
 
 import debug from 'debug';
 
-const log = debug('tomkp.ScrollSync');
+//const log = debug('tomkp.ScrollSync');
+const log = console.log
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
         this.onHeaderClick = this.onHeaderClick.bind(this);
 
         this.count = 500;
-        this.resetTimeoutMs = 50;
+        this.resetTimeoutMs = 250;
 
         this.headerRefs = [];
         this.contentRefs = [];
@@ -48,6 +49,7 @@ class App extends Component {
     }
 
     onContentScroll(e) {
+        //log('this.isHeaderScrolling', this.isHeaderScrolling)
 
         if (!this.isHeaderScrolling) {
 
@@ -97,11 +99,9 @@ class App extends Component {
 
     scrollContentToIndex(key) {
         log(`scrollContentToIndex`, key);
-
         const ref = this.contentRefs[key].current;
-        ref.scrollIntoView({behavior: 'smooth'});
+        ref.scrollIntoView(true);
         clearTimeout(this.timeoutId);
-
         this.timeoutId = setTimeout(() => {
             this.isHeaderScrolling = false;
         }, this.resetTimeoutMs);
