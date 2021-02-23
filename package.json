@@ -12,6 +12,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "prettier": "prettier --config ./.prettierrc --write './**/*.{js,json,ts,tsx,css,json,md,yml}'",
     "deploy": "npm run build && surge build sync.datastrobe.com"
   },
   "browserslist": {
@@ -25,5 +26,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
