@@ -1,9 +1,6 @@
 import React, { Component, createRef } from 'react';
 import './App.css';
 
-import debug from 'debug';
-
-//const log = debug('tomkp.ScrollSync');
 const log = console.log
 
 class App extends Component {
