@@ -8,6 +8,9 @@
     "react-dom": "^17.0.1",
     "react-scripts": "^4.0.3"
   },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -26,8 +29,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "prettier": "^2.2.1"
   }
 }
