@@ -65,9 +65,9 @@ class App extends Component {
       log(`centered`, centered);
 
       if (centered !== -1) {
-        this.headerRefs.map((_) => {
-          _.current.style.background = 'transparent';
-          _.current.style.borderBottomColor = 'transparent';
+        this.headerRefs.map((ref) => {
+          ref.current.style.background = 'transparent';
+          ref.current.style.borderBottomColor = 'transparent';
         });
 
         const ref = this.headerRefs[centered].current;
