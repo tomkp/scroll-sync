@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "normalize.css": "^8.0.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
@@ -15,8 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "prettier": "prettier --config ./.prettierrc --write './**/*.{js,json,ts,tsx,css,json,md,yml}'",
-    "deploy": "npm run build && surge build sync.datastrobe.com"
+    "prettier": "prettier --config ./.prettierrc --write './**/*.{js,json,ts,tsx,css,json,md,yml}'"
   },
   "browserslist": {
     "production": [
